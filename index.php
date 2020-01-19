@@ -1,4 +1,27 @@
-<?php include './templates/header.php' ?>
+<?php 
+include './config/koneksi.php';
+
+
+
+$sql1 = "select count(*) as total_anggota from anggota";
+$sql2 =  "select count(*) as total_buku from buku";
+$sql3 = "select count(*) as buku_tersedia from buku where status='Tersedia'";
+$sql4 = "select count(*) as buku_tidak_tersedia from buku where status='Tidak Tersedia'";
+
+$result = mysqli_query($koneksi, $sql1);
+$anggota = mysqli_fetch_row($result);
+
+$result2 = mysqli_query($koneksi, $sql2);
+$buku = mysqli_fetch_row($result2);
+
+$result3 = mysqli_query($koneksi, $sql3);
+$buku_tersedia = mysqli_fetch_row($result3);
+
+$result4 = mysqli_query($koneksi, $sql4);
+$buku_tidak_tersedia = mysqli_fetch_row($result4);
+
+
+include './templates/header.php'; ?>
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -16,7 +39,9 @@
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
           <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Buku</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">900</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">
+            <?= $buku[0] ?>
+          </div>
         </div>
         <div class="col-auto">
           <i class="fas fa-book fa-2x text-gray-300"></i>
@@ -33,7 +58,9 @@
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
           <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Anggota</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">3000</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">
+          <?= $anggota[0] ?>
+          </div>
         </div>
         <div class="col-auto">
           <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -52,7 +79,9 @@
           <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Buku Tersedia</div>
           <div class="row no-gutters align-items-center">
             <div class="col-auto">
-              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">500</div>
+              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+              <?= $buku_tersedia[0] ?>
+              </div>
             </div>
             <div class="col">
             
@@ -74,7 +103,9 @@
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
           <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Buku Dipinjam</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">
+          <?= $buku_tidak_tersedia[0] ?>
+          </div>
         </div>
         <div class="col-auto">
           <i class="fas fa-book-reader fa-2x text-gray-300"></i>
@@ -107,22 +138,23 @@
                   </thead>
 
                   <tbody>
+
+                  <?php
+
+                  $query6 = "SELECT * FROM buku order by total_dipinjam DESC LIMIT 10";
+                  $result_buku = mysqli_query($koneksi, $query6);
+                  while($buku = mysqli_fetch_array($result_buku)) :
+                  ?>
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>61</td>
-                      <td>61</td>
+                      <td><?= $buku['isbn'] ?></td>
+                      <td><?= $buku['judul_buku'] ?></td>
+                      <td><?= $buku['pengarang'] ?></td>
+                      <td><?= $buku['penerbit'] ?></td>
+                      <td><?= $buku['tahun_terbit'] ?></td>
+                      <td><?= $buku['total_dipinjam'] ?></td>
                     </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>61</td>
-                      <td>2312</td>
-                    </tr>
+                  <?php endwhile; ?>
+
                   </tbody>
                 </table>
               </div>
@@ -146,21 +178,25 @@
                       <th>NIM</th>
                       <th>Fakultas</th>
                       <th>Jurusan</th>
+                      <th>Total Meminjam Buku</th>
                     </tr>
                   </thead>
                   <tbody>
+                  <?php
+
+                  $query_anggota = "SELECT * FROM anggota order by jumlah_buku DESC LIMIT 10";
+                  $result_anggota = mysqli_query($koneksi, $query_anggota);
+                  while($anggota = mysqli_fetch_array($result_anggota)) :
+                  ?>
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>10517016</td>
-                      <td>Teknik</td>
-                      <td>Sistem Informasi</td>
+                      <td><?= $anggota['nama_anggota'] ?></td>
+                      <td><?= $anggota['nim'] ?></td>
+                      <td><?= $anggota['fakultas'] ?></td>
+                      <td><?= $anggota['jurusan'] ?></td>
+                      <td><?= $anggota['jumlah_buku'] ?></td>
                     </tr>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>10517016</td>
-                      <td>Teknik</td>
-                      <td>Sistem Informasi</td>
-                    </tr>
+                  <?php endwhile; ?>
+               
                   </tbody>
                 </table>
               </div>
