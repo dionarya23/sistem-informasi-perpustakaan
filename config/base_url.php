@@ -1,3 +1,3 @@
 <?php
 
-define('BASEURL', 'http://localhost/perpustakaan');
+define('BASEURL', 'http://perpustakaan-dokun.masuk.id');
