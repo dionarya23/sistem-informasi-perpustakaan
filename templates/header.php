@@ -38,7 +38,7 @@ include './config/base_url.php';
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-book"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Perpus <sup>Kite</sup></div>
+        <div class="sidebar-brand-text mx-3">Perpus <sup>Dokun</sup></div>
       </a>
 
       <!-- Divider -->
@@ -73,6 +73,20 @@ include './config/base_url.php';
         <a class="nav-link" href="peminjaman.php">
           <i class="fas fa-fw fa-archive"></i>
           <span>Peminjaman</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="pengembalian.php">
+          <i class="fas fa-fw fa-undo"></i>
+            <span>Pengembalian</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="team.php">
+          <i class="fas fa-fw fa-undo"></i>
+            <span>Team Member</span>
+        </a>
       </li>
 
       <!-- Divider -->

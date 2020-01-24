@@ -11,9 +11,7 @@ if (isset($_POST['submit'])) {
 
     $query = "INSERT INTO buku (id_buku, isbn, judul_buku, pengarang, tahun_terbit, penerbit, status) 
         VALUES('', '$isbn', '$judul_buku', '$pengarang', '$tahun_terbit', '$penerbit', '$status')";
-
     $result = mysqli_query($koneksi, $query);
-
 
     if ($result) {
         $_SESSION['message'] = "success";

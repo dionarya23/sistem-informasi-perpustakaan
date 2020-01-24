@@ -1,7 +1,10 @@
 <?php 
 include './config/koneksi.php';
+session_start();
 
-
+if (!isset($_SESSION['user'])) {
+  header('location:login.php');
+}
 
 $sql1 = "select count(*) as total_anggota from anggota";
 $sql2 =  "select count(*) as total_buku from buku";
