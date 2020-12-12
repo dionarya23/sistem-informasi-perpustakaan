@@ -1,9 +1,9 @@
 <?php
 
 define('HOST', 'localhost');
-define('DBNAME', 'perpust2_perpustakaan');
-define('DBUSER', 'perpust2_perpustakaan');
-define('DBPASS', 'd10n4ry4pamungkas');
+define('DBNAME', 'perpustakaan_cl');
+define('DBUSER', 'root');
+define('DBPASS', '');
 
 $koneksi = mysqli_connect(HOST, DBUSER, DBPASS, DBNAME);
 

@@ -15,6 +15,8 @@ $result = mysqli_query($koneksi, $query);
 
 if ($result) {
     $_SESSION['message'] = "success";
+    header('location:pengembalian.php');
 } else {
     $_SESSION['message_gagal'] = 'failure';
+    header('location:pengembalian.php');
 }

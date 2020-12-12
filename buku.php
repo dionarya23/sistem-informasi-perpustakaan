@@ -45,8 +45,8 @@ include './templates/header.php'; ?>
                       <td><?= $buku['isbn'] ?></td>
                       <td><?= $buku['judul_buku'] ?></td>
                       <td><?= $buku['pengarang'] ?></td>
-                      <td><?= $buku['tahun_terbit'] ?></td>
                       <td><?= $buku['penerbit'] ?></td>
+                      <td><?= $buku['tahun_terbit'] ?></td>
                       <td><?= $buku['status'] ?></td>
                       <td><?= $buku['total_dipinjam'] ?></td>
 

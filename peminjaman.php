@@ -31,10 +31,10 @@ include './templates/header.php'; ?>
 
                   <?php 
                       $query = "SELECT buku.judul_buku, anggota.nama_anggota, 
-                                peminjaman.tgl_pinjam FROM peminjaman inner join buku on 
+                                peminjaman.tanggal_peminjaman FROM peminjaman inner join buku on 
                                 buku.id_buku=peminjaman.id_buku inner join anggota on 
                                 anggota.id_anggota=peminjaman.id_anggota
-                                WHERE peminjaman.tgl_pengembalian=''";
+                                WHERE peminjaman.tanggal_pengembalian=''";
                       $result = mysqli_query($koneksi, $query);
                       $no = 1;
                       while($peminjaman = mysqli_fetch_array($result)):
